@@ -6,6 +6,238 @@
 %%HEARTBEAT%%@sample etc/heartbeat.yml.sample
 %%METRICBEAT%%@sample etc/metricbeat.yml.sample
 %%PACKETBEAT%%@sample etc/packetbeat.yml.sample
+@dir %%DATADIR%%
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/postgresql
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/postgresql/module.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/postgresql/log
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/postgresql/log/config
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/postgresql/log/config/log.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/postgresql/log/ingest
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/postgresql/log/ingest/pipeline.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/postgresql/log/manifest.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/osquery
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/osquery/result
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/osquery/result/config
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/osquery/result/config/result.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/osquery/result/ingest
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/osquery/result/ingest/pipeline.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/osquery/result/manifest.yml
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/osquery/module.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/kibana
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/kibana/module.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/kibana/log
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/kibana/log/config
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/kibana/log/config/log.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/kibana/log/ingest
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/kibana/log/ingest/pipeline.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/kibana/log/manifest.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/logstash
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/logstash/module.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/logstash/slowlog
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/logstash/slowlog/config
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/logstash/slowlog/config/slowlog.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/logstash/slowlog/ingest
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/logstash/slowlog/ingest/pipeline-json.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/logstash/slowlog/ingest/pipeline-plain.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/logstash/slowlog/manifest.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/logstash/log
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/logstash/log/config
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/logstash/log/config/log.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/logstash/log/ingest
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/logstash/log/ingest/pipeline-json.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/logstash/log/ingest/pipeline-plain.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/logstash/log/manifest.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/redis
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/redis/module.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/redis/slowlog
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/redis/slowlog/config
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/redis/slowlog/config/slowlog.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/redis/slowlog/ingest
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/redis/slowlog/ingest/pipeline.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/redis/slowlog/manifest.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/redis/log
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/redis/log/config
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/redis/log/config/log.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/redis/log/ingest
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/redis/log/ingest/pipeline.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/redis/log/manifest.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/mongodb
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/mongodb/module.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/mongodb/log
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/mongodb/log/config
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/mongodb/log/config/log.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/mongodb/log/ingest
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/mongodb/log/ingest/pipeline.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/mongodb/log/manifest.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/system
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/system/syslog
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/system/syslog/config
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/system/syslog/config/syslog.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/system/syslog/ingest
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/system/syslog/ingest/pipeline.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/system/syslog/manifest.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/system/auth
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/system/auth/config
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/system/auth/config/auth.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/system/auth/ingest
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/system/auth/ingest/pipeline.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/system/auth/manifest.yml
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/system/module.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/apache2
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/apache2/access
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/apache2/access/config
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/apache2/access/config/access.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/apache2/access/ingest
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/apache2/access/ingest/default.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/apache2/access/manifest.yml
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/apache2/module.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/apache2/error
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/apache2/error/config
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/apache2/error/config/error.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/apache2/error/ingest
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/apache2/error/ingest/pipeline.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/apache2/error/manifest.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/icinga
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/icinga/module.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/icinga/startup
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/icinga/startup/config
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/icinga/startup/config/startup.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/icinga/startup/ingest
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/icinga/startup/ingest/pipeline.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/icinga/startup/manifest.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/icinga/main
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/icinga/main/config
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/icinga/main/config/main.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/icinga/main/ingest
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/icinga/main/ingest/pipeline.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/icinga/main/manifest.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/icinga/debug
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/icinga/debug/config
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/icinga/debug/config/debug.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/icinga/debug/ingest
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/icinga/debug/ingest/pipeline.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/icinga/debug/manifest.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/nginx
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/nginx/access
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/nginx/access/config
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/nginx/access/config/nginx-access.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/nginx/access/machine_learning
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/nginx/access/machine_learning/response_code.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/nginx/access/machine_learning/datafeed_remote_ip_url_count.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/nginx/access/machine_learning/remote_ip_url_count.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/nginx/access/machine_learning/visitor_rate.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/nginx/access/machine_learning/datafeed_visitor_rate.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/nginx/access/machine_learning/datafeed_low_request_rate.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/nginx/access/machine_learning/datafeed_remote_ip_request_rate.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/nginx/access/machine_learning/low_request_rate.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/nginx/access/machine_learning/datafeed_response_code.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/nginx/access/machine_learning/remote_ip_request_rate.json
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/nginx/access/ingest
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/nginx/access/ingest/default.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/nginx/access/manifest.yml
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/nginx/module.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/nginx/error
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/nginx/error/config
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/nginx/error/config/nginx-error.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/nginx/error/ingest
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/nginx/error/ingest/pipeline.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/nginx/error/manifest.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/kafka
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/kafka/module.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/kafka/log
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/kafka/log/config
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/kafka/log/config/log.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/kafka/log/ingest
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/kafka/log/ingest/pipeline.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/kafka/log/manifest.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/mysql
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/mysql/module.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/mysql/slowlog
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/mysql/slowlog/config
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/mysql/slowlog/config/slowlog.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/mysql/slowlog/ingest
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/mysql/slowlog/ingest/pipeline.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/mysql/slowlog/manifest.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/mysql/error
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/mysql/error/config
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/mysql/error/config/error.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/mysql/error/ingest
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/mysql/error/ingest/pipeline.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/mysql/error/manifest.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/auditd
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/auditd/module.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/auditd/log
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/auditd/log/config
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/auditd/log/config/log.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/auditd/log/ingest
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/auditd/log/ingest/pipeline.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/auditd/log/manifest.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/iis
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/iis/access
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/iis/access/config
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/iis/access/config/iis-access.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/iis/access/ingest
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/iis/access/ingest/default.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/iis/access/manifest.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/iis/error
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/iis/error/config
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/iis/error/config/iis-error.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/iis/error/ingest
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/iis/error/ingest/default.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/iis/error/manifest.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/elasticsearch
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/elasticsearch/module.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/elasticsearch/slowlog
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/elasticsearch/slowlog/config
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/elasticsearch/slowlog/config/slowlog.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/elasticsearch/slowlog/ingest
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/elasticsearch/slowlog/ingest/pipeline.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/elasticsearch/slowlog/manifest.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/elasticsearch/server
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/elasticsearch/server/config
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/elasticsearch/server/config/log.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/elasticsearch/server/ingest
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/elasticsearch/server/ingest/pipeline.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/elasticsearch/server/manifest.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/elasticsearch/audit
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/elasticsearch/audit/config
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/elasticsearch/audit/config/audit.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/elasticsearch/audit/ingest
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/elasticsearch/audit/ingest/pipeline.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/elasticsearch/audit/manifest.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/elasticsearch/deprecation
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/elasticsearch/deprecation/config
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/elasticsearch/deprecation/config/log.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/elasticsearch/deprecation/ingest
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/elasticsearch/deprecation/ingest/pipeline.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/elasticsearch/deprecation/manifest.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/elasticsearch/gc
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/elasticsearch/gc/config
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/elasticsearch/gc/config/gc.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/elasticsearch/gc/ingest
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/elasticsearch/gc/ingest/pipeline.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/elasticsearch/gc/manifest.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/traefik
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/traefik/access
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/traefik/access/config
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/traefik/access/config/traefik-access.yml
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/traefik/access/machine_learning
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/traefik/access/machine_learning/response_code.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/traefik/access/machine_learning/datafeed_remote_ip_url_count.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/traefik/access/machine_learning/remote_ip_url_count.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/traefik/access/machine_learning/visitor_rate.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/traefik/access/machine_learning/datafeed_visitor_rate.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/traefik/access/machine_learning/datafeed_low_request_rate.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/traefik/access/machine_learning/datafeed_remote_ip_request_rate.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/traefik/access/machine_learning/low_request_rate.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/traefik/access/machine_learning/datafeed_response_code.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/traefik/access/machine_learning/remote_ip_request_rate.json
+%%FILEBEAT%%@dir %%DATADIR%%/filebeat/module/traefik/access/ingest
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/traefik/access/ingest/pipeline.json
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/traefik/access/manifest.yml
+%%FILEBEAT%%%%DATADIR%%/filebeat/module/traefik/module.yml
 @dir /var/db/beats
 %%FILEBEAT%%@dir /var/db/beats/filebeat
 %%HEARTBEAT%%@dir /var/db/beats/heartbeat

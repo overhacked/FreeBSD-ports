@@ -52,6 +52,11 @@ do-install:
 		${INSTALL_DATA} ${WRKSRC}/$${GO_TARGET}/$${GO_TARGET}.yml \
 			${STAGEDIR}${PREFIX}/etc/$${GO_TARGET}.yml.sample ;\
 		${MKDIR} ${STAGEDIR}/var/db/beats/$${GO_TARGET} ;\
+		${MKDIR} ${STAGEDIR}${DATADIR} ;\
 	done
+.if ${PORT_OPTIONS:FILEBEAT}
+	${MKDIR} ${STAGEDIR}${DATADIR}/filebeat/module
+	(cd ${WRKSRC}/filebeat/module && ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR}/filebeat/module)
+.endif
 
 .include <bsd.port.mk>
