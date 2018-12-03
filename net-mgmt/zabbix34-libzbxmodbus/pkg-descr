@@ -1,0 +1,4 @@
+This project provides monitoring of serial and TCP MODBUS hosts using a
+natively compiled Zabbix server module, written in C.
+
+WWW: https://github.com/v-zhuravlev/libzbxmodbus
