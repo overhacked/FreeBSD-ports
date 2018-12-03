@@ -1,0 +1,3 @@
+In order to enable the module, add libzbxmodbus.so to the LoadModule=
+line in zabbix_server.conf and restart the server with
+service zabbix_server restart
