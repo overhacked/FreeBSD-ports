@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	reposado
-PORTVERSION=	0.0.20160422
+PORTVERSION=	0.0.20181102
 CATEGORIES=	net
 
 MAINTAINER=	masaki@club.kyutech.ac.jp
@@ -12,7 +12,7 @@ RUN_DEPENDS=	curl:ftp/curl
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	wdas
-GH_TAGNAME=	de2fdb6
+GH_TAGNAME=	6a9d93b
 
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
