@@ -8,6 +8,8 @@ PORTREVISION=	1
 CATEGORIES=	net-mgmt
 PKGNAMEPREFIX=	zabbix34-
 
+MASTER_SITES=   https://github.com/${GH_ACCOUNT}/${PORTNAME}/releases/download/${DISTVERSION}/
+
 MAINTAINER=	ross@ross-williams.net
 COMMENT=	Zabbix server module for collecting metric from MODBUS (TCP & serial) hosts
 
@@ -19,9 +21,8 @@ RUN_DEPENDS=	zabbix_server:net-mgmt/${PKGNAMEPREFIX}server
 
 CONFLICTS=	zabbix[0-24-9][0-13-9]-libzbxmodbus zabbix[0-9]-libzbxmodbus
 
-USES=		autoreconf gmake libtool pkgconfig
+USES=		gmake libtool pkgconfig
 
-USE_GITHUB=	yes
 GH_ACCOUNT=	v-zhuravlev
 
 GNU_CONFIGURE=	yes
