@@ -13,7 +13,6 @@ MAINTAINER=	ross@ross-williams.net
 COMMENT=	Zabbix server module for collecting metric from MODBUS (TCP & serial) hosts
 
 LICENSE=	GPLv2+
-LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${NONEXISTENT}:net-mgmt/${PKGNAMEPREFIX}server:patch
 RUN_DEPENDS=	zabbix_server:net-mgmt/${PKGNAMEPREFIX}server
