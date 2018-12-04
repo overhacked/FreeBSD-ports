@@ -3,12 +3,11 @@
 
 PORTNAME=	libzbxmodbus
 PORTVERSION=	0.9
-DISTVERSIONPREFIX=	v
 PORTREVISION=	1
 CATEGORIES=	net-mgmt
 PKGNAMEPREFIX=	zabbix34-
 
-MASTER_SITES=   https://github.com/${GH_ACCOUNT}/${PORTNAME}/releases/download/${DISTVERSION}/
+MASTER_SITES=   https://github.com/${GH_ACCOUNT}/${PORTNAME}/releases/download/v${DISTVERSION}/
 
 MAINTAINER=	ross@ross-williams.net
 COMMENT=	Zabbix server module for collecting metric from MODBUS (TCP & serial) hosts
