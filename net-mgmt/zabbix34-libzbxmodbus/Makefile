@@ -3,7 +3,7 @@
 
 PORTNAME=	libzbxmodbus
 PORTVERSION=	0.9
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	net-mgmt
 PKGNAMEPREFIX=	zabbix34-
 
@@ -31,8 +31,5 @@ CONFIGURE_ARGS=	--enable-zabbix-3.2
 USE_LDCONFIG=	yes
 
 PORTSCOUT=	skipv:latest,gh-pages
-
-do-install:
-		${INSTALL_LIB} ${WRKSRC}/src/.libs/libzbxmodbus.so ${STAGEDIR}${PREFIX}/lib/libzbxmodbus.so
 
 .include <bsd.port.mk>
