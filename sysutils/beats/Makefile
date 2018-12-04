@@ -54,7 +54,7 @@ do-install:
 		${MKDIR} ${STAGEDIR}/var/db/beats/$${GO_TARGET} ;\
 		${MKDIR} ${STAGEDIR}${DATADIR} ;\
 	done
-.if ${PORT_OPTIONS:FILEBEAT}
+.if !empty(PORT_OPTIONS:MFILEBEAT)
 	${MKDIR} ${STAGEDIR}${DATADIR}/filebeat/module
 	(cd ${WRKSRC}/filebeat/module && ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR}/filebeat/module)
 .endif
