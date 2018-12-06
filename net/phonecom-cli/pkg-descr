@@ -1,0 +1,3 @@
+A Command Line Interface (CLI) tool to access the Phone.com Phoenix API. The CLI tool is developed in Google Golang (Go) (https://golang.org) by using a Golang generated client defined with the Swagger's RESTful API Documentation Specification (http://swagger.io/specification).
+
+WWW: https://apidocs.phone.com/docs/command-line-interface-tool

@@ -1,0 +1,15 @@
+TIMESTAMP = 1544117602
+SHA256 (phonedotcom-API-Swagger-v1.0.7_GH0.tar.gz) = 371fb7089a1bffa2df1cc497b20e45c1584b3af7d6ce345d527fe8cf119709ee
+SIZE (phonedotcom-API-Swagger-v1.0.7_GH0.tar.gz) = 102768
+SHA256 (golang-net-c394268_GH0.tar.gz) = b3592668b46bfd15cecea395c3efd2124abce92f08b857cec3a4012d5a33151a
+SIZE (golang-net-c394268_GH0.tar.gz) = 968640
+SHA256 (go-resty-resty-v0.13_GH0.tar.gz) = ec8f1f00c161c97fe9cc24058a95213e71023c02b92d0e99e649e2bf909ee8b6
+SIZE (go-resty-resty-v0.13_GH0.tar.gz) = 2621310
+SHA256 (urfave-cli-b67dcf9_GH0.tar.gz) = 8e0f2af7656aaaa78f115feabf90f9026d144d3a2b50b5a100e0714921037fff
+SIZE (urfave-cli-b67dcf9_GH0.tar.gz) = 65321
+SHA256 (yukithm-json2csv-e86d456_GH0.tar.gz) = 21115755afe08d06cfa3b495e194f3c7be0e7d9b17f28ee05ddc3b0d36102928
+SIZE (yukithm-json2csv-e86d456_GH0.tar.gz) = 44056
+SHA256 (stretchr-testify-8019298_GH0.tar.gz) = 72c9e35cf00bbdd72f55978e010afb3669ceb36000f5dd263d8b69b2b27992b2
+SIZE (stretchr-testify-8019298_GH0.tar.gz) = 101561
+SHA256 (phonedotcom-API-SDK-go-feace2f_GH0.tar.gz) = 0a66b316b34cdc1a419a9469921156d419dce16ff33c65e46bcec179fed40df2
+SIZE (phonedotcom-API-SDK-go-feace2f_GH0.tar.gz) = 79686
