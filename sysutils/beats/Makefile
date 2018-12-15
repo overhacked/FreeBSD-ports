@@ -38,6 +38,8 @@ METRICBEAT_VARS=GO_TARGETS+=metricbeat
 HEARTBEAT_DESC=	Heartbeat
 HEARTBEAT_VARS=GO_TARGETS+=heartbeat
 
+.include <bsd.port.options.mk>
+
 MAKE_ENV+=	GOBUILD_FLAGS=""
 
 do-build:
@@ -54,7 +56,7 @@ do-install:
 		${MKDIR} ${STAGEDIR}/var/db/beats/$${GO_TARGET} ;\
 		${MKDIR} ${STAGEDIR}${DATADIR} ;\
 	done
-.if !empty(PORT_OPTIONS:MFILEBEAT)
+.if ${PORT_OPTIONS:MFILEBEAT}
 	${MKDIR} ${STAGEDIR}${DATADIR}/filebeat/module
 	(cd ${WRKSRC}/filebeat/module && ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR}/filebeat/module)
 .endif
