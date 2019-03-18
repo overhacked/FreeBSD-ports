@@ -3,9 +3,12 @@
 
 PORTNAME=	libzbxmodbus
 PORTVERSION=	0.9
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	net-mgmt
-PKGNAMEPREFIX=	zabbix34-
+
+FLAVORS=        zabbix40 zabbix30 zabbix32 zabbix34
+FLAVOR?=	${FLAVORS:[1]}
+PKGNAMEPREFIX=	${FLAVOR}-
 
 MASTER_SITES=   https://github.com/${GH_ACCOUNT}/${PORTNAME}/releases/download/v${DISTVERSION}/
 
@@ -25,8 +28,12 @@ GH_ACCOUNT=	v-zhuravlev
 
 GNU_CONFIGURE=	yes
 GET_ZBX_WRKSRC=	cd ${.CURDIR:H:H}/net-mgmt/${PKGNAMEPREFIX}server && make -V WRKSRC
-CONFIGURE_ARGS=	--enable-zabbix-3.2
 # --with-zabbix=$$(${GET_ZBX_WRKSRC})
+.if ${FLAVOR:U} == zabbix30
+CONFIGURE_ARGS= --enable-zabbix-3
+.else # zabbix >= 3.2
+CONFIGURE_ARGS=	--enable-zabbix-3.2
+.endif
 
 USE_LDCONFIG=	yes
 
