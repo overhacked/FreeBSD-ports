@@ -3,10 +3,10 @@
 
 PORTNAME=	libzbxmodbus
 PORTVERSION=	0.9
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	net-mgmt
 
-FLAVORS=        zabbix42 zabbix4 zabbix3 zabbix32 zabbix34
+FLAVORS=        zabbix42 zabbix4 zabbix3 
 FLAVOR?=	${FLAVORS:[1]}
 PKGNAMEPREFIX=	${FLAVOR}-
 
