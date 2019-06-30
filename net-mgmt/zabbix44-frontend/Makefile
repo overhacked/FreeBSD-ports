@@ -10,6 +10,7 @@ MASTERDIR=	${.CURDIR}/../zabbix44-server
 NO_BUILD=	yes
 NO_ARCH=	yes
 PATCHDIR=
+EXTRA_PATCHES= ${MASTERDIR}/files/patch-http-digest-auth
 PLIST=		${PKGDIR}/pkg-plist.frontend
 
 USE_PHP=	bcmath ctype dom fileinfo filter gd gettext json ldap mbstring pcre \

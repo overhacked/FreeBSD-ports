@@ -1,0 +1,263 @@
+diff --git frontends/php/disc_prototypes.php frontends/php/disc_prototypes.php
+index 86495f3842..e57ae0ca2e 100644
+--- frontends/php/disc_prototypes.php
++++ frontends/php/disc_prototypes.php
+@@ -256,14 +256,15 @@ $fields = [
+ 										null
+ 									],
+ 	'http_authtype' =>				[T_ZBX_INT, O_OPT, null,
+-										IN([HTTPTEST_AUTH_NONE, HTTPTEST_AUTH_BASIC, HTTPTEST_AUTH_NTLM,
+-											HTTPTEST_AUTH_KERBEROS
++										IN([HTTPTEST_AUTH_NONE, HTTPTEST_AUTH_BASIC, HTTPTEST_AUTH_DIGEST,
++											HTTPTEST_AUTH_NTLM, HTTPTEST_AUTH_KERBEROS
+ 										]),
+ 										null
+ 									],
+ 	'http_username' =>				[T_ZBX_STR, O_OPT, null,	null,
+ 										'(isset({add}) || isset({update})) && isset({http_authtype})'.
+ 											' && ({http_authtype} == '.HTTPTEST_AUTH_BASIC.
++												' || {http_authtype} == '.HTTPTEST_AUTH_DIGEST.
+ 												' || {http_authtype} == '.HTTPTEST_AUTH_NTLM.
+ 												' || {http_authtype} == '.HTTPTEST_AUTH_KERBEROS.
+ 											')',
+@@ -272,6 +273,7 @@ $fields = [
+ 	'http_password' =>				[T_ZBX_STR, O_OPT, null,	null,
+ 										'(isset({add}) || isset({update})) && isset({http_authtype})'.
+ 											' && ({http_authtype} == '.HTTPTEST_AUTH_BASIC.
++												' || {http_authtype} == '.HTTPTEST_AUTH_DIGEST.
+ 												' || {http_authtype} == '.HTTPTEST_AUTH_NTLM.
+ 												' || {http_authtype} == '.HTTPTEST_AUTH_KERBEROS.
+ 											')',
+diff --git frontends/php/host_discovery.php frontends/php/host_discovery.php
+index 0fa70e8b88..51c1a55de2 100644
+--- frontends/php/host_discovery.php
++++ frontends/php/host_discovery.php
+@@ -198,14 +198,15 @@ $fields = [
+ 									null
+ 								],
+ 	'http_authtype' =>			[T_ZBX_INT, O_OPT, null,
+-									IN([HTTPTEST_AUTH_NONE, HTTPTEST_AUTH_BASIC, HTTPTEST_AUTH_NTLM,
+-										HTTPTEST_AUTH_KERBEROS
++									IN([HTTPTEST_AUTH_NONE, HTTPTEST_AUTH_BASIC, HTTPTEST_AUTH_DIGEST,
++										HTTPTEST_AUTH_NTLM, HTTPTEST_AUTH_KERBEROS
+ 									]),
+ 									null
+ 								],
+ 	'http_username' =>			[T_ZBX_STR, O_OPT, null,	null,
+ 									'(isset({add}) || isset({update})) && isset({http_authtype})'.
+ 										' && ({http_authtype} == '.HTTPTEST_AUTH_BASIC.
++											' || {http_authtype} == '.HTTPTEST_AUTH_DIGEST.')',
+ 											' || {http_authtype} == '.HTTPTEST_AUTH_NTLM.
+ 											' || {http_authtype} == '.HTTPTEST_AUTH_KERBEROS.')',
+ 									_('Username')
+@@ -213,6 +214,7 @@ $fields = [
+ 	'http_password' =>			[T_ZBX_STR, O_OPT, null,	null,
+ 									'(isset({add}) || isset({update})) && isset({http_authtype})'.
+ 										' && ({http_authtype} == '.HTTPTEST_AUTH_BASIC.
++											' || {http_authtype} == '.HTTPTEST_AUTH_DIGEST.')',
+ 											' || {http_authtype} == '.HTTPTEST_AUTH_NTLM.
+ 											' || {http_authtype} == '.HTTPTEST_AUTH_KERBEROS.')',
+ 									_('Password')
+diff --git frontends/php/httpconf.php frontends/php/httpconf.php
+index 7f43ae688b..e9fd2271aa 100644
+--- frontends/php/httpconf.php
++++ frontends/php/httpconf.php
+@@ -54,12 +54,14 @@ $fields = [
+ 	'authentication'  => [T_ZBX_INT, O_OPT, null,  IN('0,1,2,3'),             'isset({add}) || isset({update})'],
+ 	'http_user'       => [T_ZBX_STR, O_OPT, null,  null,
+ 		'(isset({add}) || isset({update})) && isset({authentication}) && ({authentication}=='.HTTPTEST_AUTH_BASIC.
++			' || {authentication}=='.HTTPTEST_AUTH_DIGEST.
+ 			' || {authentication}=='.HTTPTEST_AUTH_NTLM.' || {authentication}=='.HTTPTEST_AUTH_KERBEROS.
+ 		')',
+ 		_('User')
+ 	],
+ 	'http_password'		=> [T_ZBX_STR, O_OPT, P_NO_TRIM, null,
+ 		'(isset({add}) || isset({update})) && isset({authentication}) && ({authentication}=='.HTTPTEST_AUTH_BASIC.
++			' || {authentication}=='.HTTPTEST_AUTH_DIGEST.
+ 			' || {authentication}=='.HTTPTEST_AUTH_NTLM.' || {authentication}=='.HTTPTEST_AUTH_KERBEROS.
+ 		')',
+ 		_('Password')
+diff --git frontends/php/include/classes/api/services/CHttpTest.php frontends/php/include/classes/api/services/CHttpTest.php
+index c7c2039b8a..8f5033051c 100644
+--- frontends/php/include/classes/api/services/CHttpTest.php
++++ frontends/php/include/classes/api/services/CHttpTest.php
+@@ -286,7 +286,7 @@ class CHttpTest extends CApiService {
+ 				'value' =>				['type' => API_STRING_UTF8, 'flags' => API_REQUIRED | API_NOT_EMPTY, 'length' => DB::getFieldLength('httptest_field', 'value')]
+ 			]],
+ 			'status' =>				['type' => API_INT32, 'in' => implode(',', [HTTPTEST_STATUS_ACTIVE, HTTPTEST_STATUS_DISABLED])],
+-			'authentication' =>		['type' => API_INT32, 'in' => implode(',', [HTTPTEST_AUTH_NONE, HTTPTEST_AUTH_BASIC, HTTPTEST_AUTH_NTLM, HTTPTEST_AUTH_KERBEROS])],
++			'authentication' =>		['type' => API_INT32, 'in' => implode(',', [HTTPTEST_AUTH_NONE, HTTPTEST_AUTH_BASIC, HTTPTEST_AUTH_DIGEST, HTTPTEST_AUTH_NTLM, HTTPTEST_AUTH_KERBEROS])],
+ 			'http_user' =>			['type' => API_STRING_UTF8, 'length' => DB::getFieldLength('httptest', 'http_user')],
+ 			'http_password' =>		['type' => API_STRING_UTF8, 'length' => DB::getFieldLength('httptest', 'http_password')],
+ 			'verify_peer' =>		['type' => API_INT32, 'in' => implode(',', [HTTPTEST_VERIFY_PEER_OFF, HTTPTEST_VERIFY_PEER_ON])],
+@@ -380,7 +380,7 @@ class CHttpTest extends CApiService {
+ 				'value' =>				['type' => API_STRING_UTF8, 'flags' => API_REQUIRED | API_NOT_EMPTY, 'length' => DB::getFieldLength('httptest_field', 'value')]
+ 			]],
+ 			'status' =>				['type' => API_INT32, 'in' => implode(',', [HTTPTEST_STATUS_ACTIVE, HTTPTEST_STATUS_DISABLED])],
+-			'authentication' =>		['type' => API_INT32, 'in' => implode(',', [HTTPTEST_AUTH_NONE, HTTPTEST_AUTH_BASIC, HTTPTEST_AUTH_NTLM, HTTPTEST_AUTH_KERBEROS])],
++			'authentication' =>		['type' => API_INT32, 'in' => implode(',', [HTTPTEST_AUTH_NONE, HTTPTEST_AUTH_BASIC, HTTPTEST_AUTH_DIGEST, HTTPTEST_AUTH_NTLM, HTTPTEST_AUTH_KERBEROS])],
+ 			'http_user' =>			['type' => API_STRING_UTF8, 'length' => DB::getFieldLength('httptest', 'http_user')],
+ 			'http_password' =>		['type' => API_STRING_UTF8, 'length' => DB::getFieldLength('httptest', 'http_password')],
+ 			'verify_peer' =>		['type' => API_INT32, 'in' => implode(',', [HTTPTEST_VERIFY_PEER_OFF, HTTPTEST_VERIFY_PEER_ON])],
+diff --git frontends/php/include/classes/api/services/CItemGeneral.php frontends/php/include/classes/api/services/CItemGeneral.php
+index b3b5092731..c304230407 100644
+--- frontends/php/include/classes/api/services/CItemGeneral.php
++++ frontends/php/include/classes/api/services/CItemGeneral.php
+@@ -2195,7 +2195,7 @@ abstract class CItemGeneral extends CApiService {
+ 			'authtype' => [
+ 				'type' => API_INT32,
+ 				'in' => implode(',', [
+-					HTTPTEST_AUTH_NONE, HTTPTEST_AUTH_BASIC, HTTPTEST_AUTH_NTLM, HTTPTEST_AUTH_KERBEROS
++					HTTPTEST_AUTH_NONE, HTTPTEST_AUTH_BASIC, HTTPTEST_AUTH_DIGEST, HTTPTEST_AUTH_NTLM, HTTPTEST_AUTH_KERBEROS
+ 				])
+ 			]
+ 		];
+@@ -2203,7 +2203,7 @@ abstract class CItemGeneral extends CApiService {
+ 		$data = $item + $db_item;
+ 
+ 		if (array_key_exists('authtype', $data)
+-				&& ($data['authtype'] == HTTPTEST_AUTH_BASIC || $data['authtype'] == HTTPTEST_AUTH_NTLM
++				&& ($data['authtype'] == HTTPTEST_AUTH_BASIC || $data['authtype'] == HTTPTEST_AUTH_DIGEST || $data['authtype'] == HTTPTEST_AUTH_NTLM
+ 					|| $data['authtype'] == HTTPTEST_AUTH_KERBEROS)) {
+ 			$rules += [
+ 				'username' => [ 'type' => API_STRING_UTF8, 'length' => DB::getFieldLength('items', 'username')],
+diff --git frontends/php/include/defines.inc.php frontends/php/include/defines.inc.php
+index 19b815f4aa..f9e7451ae2 100644
+--- frontends/php/include/defines.inc.php
++++ frontends/php/include/defines.inc.php
+@@ -881,6 +881,7 @@ define('HTTPTEST_AUTH_NONE',		0);
+ define('HTTPTEST_AUTH_BASIC',		1);
+ define('HTTPTEST_AUTH_NTLM',		2);
+ define('HTTPTEST_AUTH_KERBEROS',	3);
++define('HTTPTEST_AUTH_DIGEST',	    4);
+ 
+ define('HTTPTEST_STATUS_ACTIVE',	0);
+ define('HTTPTEST_STATUS_DISABLED',	1);
+diff --git frontends/php/include/httptest.inc.php frontends/php/include/httptest.inc.php
+index 508c9fabe5..1a91bd75e6 100644
+--- frontends/php/include/httptest.inc.php
++++ frontends/php/include/httptest.inc.php
+@@ -27,7 +27,8 @@ function httptest_authentications($type = null) {
+ 		HTTPTEST_AUTH_NONE => _('None'),
+ 		HTTPTEST_AUTH_BASIC => _('Basic'),
+ 		HTTPTEST_AUTH_NTLM => _('NTLM'),
+-		HTTPTEST_AUTH_KERBEROS => _('Kerberos')
++		HTTPTEST_AUTH_KERBEROS => _('Kerberos'),
++		HTTPTEST_AUTH_DIGEST => _('Digest')
+ 	];
+ 
+ 	if (is_null($type)) {
+diff --git frontends/php/include/views/configuration.host.discovery.edit.php frontends/php/include/views/configuration.host.discovery.edit.php
+index 958ecb1e8f..6f3539a981 100644
+--- frontends/php/include/views/configuration.host.discovery.edit.php
++++ frontends/php/include/views/configuration.host.discovery.edit.php
+@@ -275,7 +275,8 @@ $form_list
+ 				HTTPTEST_AUTH_NONE => _('None'),
+ 				HTTPTEST_AUTH_BASIC => _('Basic'),
+ 				HTTPTEST_AUTH_NTLM => _('NTLM'),
+-				HTTPTEST_AUTH_KERBEROS => _('Kerberos')
++				HTTPTEST_AUTH_KERBEROS => _('Kerberos'),
++				HTTPTEST_AUTH_DIGEST => _('Digest')
+ 			]))->setEnabled(!$data['limited'])
+ 		],
+ 		'http_authtype_row'
+diff --git frontends/php/include/views/configuration.item.edit.php frontends/php/include/views/configuration.item.edit.php
+index 28a1891924..d2956704fd 100644
+--- frontends/php/include/views/configuration.item.edit.php
++++ frontends/php/include/views/configuration.item.edit.php
+@@ -321,7 +321,8 @@ $form_list
+ 				HTTPTEST_AUTH_NONE => _('None'),
+ 				HTTPTEST_AUTH_BASIC => _('Basic'),
+ 				HTTPTEST_AUTH_NTLM => _('NTLM'),
+-				HTTPTEST_AUTH_KERBEROS => _('Kerberos')
++				HTTPTEST_AUTH_KERBEROS => _('Kerberos'),
++				HTTPTEST_AUTH_DIGEST => _('Digest')
+ 			]))->setEnabled(!$readonly)
+ 		],
+ 		'http_authtype_row'
+diff --git frontends/php/include/views/configuration.item.prototype.edit.php frontends/php/include/views/configuration.item.prototype.edit.php
+index 36d4c7713c..883bb967ca 100644
+--- frontends/php/include/views/configuration.item.prototype.edit.php
++++ frontends/php/include/views/configuration.item.prototype.edit.php
+@@ -303,7 +303,8 @@ $form_list
+ 				HTTPTEST_AUTH_NONE => _('None'),
+ 				HTTPTEST_AUTH_BASIC => _('Basic'),
+ 				HTTPTEST_AUTH_NTLM => _('NTLM'),
+-				HTTPTEST_AUTH_KERBEROS => _('Kerberos')
++				HTTPTEST_AUTH_KERBEROS => _('Kerberos'),
++				HTTPTEST_AUTH_DIGEST => _('Digest')
+ 			]))->setEnabled(!$readonly)
+ 		],
+ 		'http_authtype_row'
+diff --git frontends/php/include/views/js/common.item.edit.js.php frontends/php/include/views/js/common.item.edit.js.php
+index 990bea9d74..8b4d17de26 100644
+--- frontends/php/include/views/js/common.item.edit.js.php
++++ frontends/php/include/views/js/common.item.edit.js.php
+@@ -245,7 +245,8 @@ zbx_subarray_push($this->data['authTypeVisibility'], ITEM_AUTHTYPE_PUBLICKEY, 'r
+ 			new CViewSwitcher('http_authtype', 'change', <?= zbx_jsvalue([
+ 				HTTPTEST_AUTH_BASIC => ['http_username_row', 'http_password_row'],
+ 				HTTPTEST_AUTH_NTLM => ['http_username_row', 'http_password_row'],
+-				HTTPTEST_AUTH_KERBEROS => ['http_username_row', 'http_password_row']
++				HTTPTEST_AUTH_KERBEROS => ['http_username_row', 'http_password_row'],
++				HTTPTEST_AUTH_DIGEST => ['http_username_row', 'http_password_row']
+ 			], true) ?>);
+ 		}
+ 		<?php
+diff --git frontends/php/items.php frontends/php/items.php
+index 4363de1d12..a2ef52dfa5 100644
+--- frontends/php/items.php
++++ frontends/php/items.php
+@@ -248,14 +248,15 @@ $fields = [
+ 										null
+ 									],
+ 	'http_authtype' =>				[T_ZBX_INT, O_OPT, null,
+-										IN([HTTPTEST_AUTH_NONE, HTTPTEST_AUTH_BASIC, HTTPTEST_AUTH_NTLM,
+-											HTTPTEST_AUTH_KERBEROS
++										IN([HTTPTEST_AUTH_NONE, HTTPTEST_AUTH_BASIC, HTTPTEST_AUTH_DIGEST,
++											HTTPTEST_AUTH_NTLM, HTTPTEST_AUTH_KERBEROS
+ 										]),
+ 										null
+ 									],
+ 	'http_username' =>				[T_ZBX_STR, O_OPT, null,	null,
+ 										'(isset({add}) || isset({update})) && isset({http_authtype})'.
+ 											' && ({http_authtype} == '.HTTPTEST_AUTH_BASIC.
++												' || {http_authtype} == '.HTTPTEST_AUTH_DIGEST.
+ 												' || {http_authtype} == '.HTTPTEST_AUTH_NTLM.
+ 												' || {http_authtype} == '.HTTPTEST_AUTH_KERBEROS.')',
+ 										_('Username')
+@@ -263,6 +264,7 @@ $fields = [
+ 	'http_password' =>				[T_ZBX_STR, O_OPT, null,	null,
+ 										'(isset({add}) || isset({update})) && isset({http_authtype})'.
+ 											' && ({http_authtype} == '.HTTPTEST_AUTH_BASIC.
++												' || {http_authtype} == '.HTTPTEST_AUTH_DIGEST.
+ 												' || {http_authtype} == '.HTTPTEST_AUTH_NTLM.
+ 												' || {http_authtype} == '.HTTPTEST_AUTH_KERBEROS.')',
+ 										_('Password')
+diff --git include/common.h include/common.h
+index 75cde313f6..4427a4239b 100644
+--- include/common.h
++++ include/common.h
+@@ -905,7 +905,8 @@ typedef enum
+ 	HTTPTEST_AUTH_NONE = 0,
+ 	HTTPTEST_AUTH_BASIC,
+ 	HTTPTEST_AUTH_NTLM,
+-	HTTPTEST_AUTH_NEGOTIATE
++	HTTPTEST_AUTH_NEGOTIATE,
++	HTTPTEST_AUTH_DIGEST
+ }
+ zbx_httptest_auth_t;
+ 
+diff --git src/libs/zbxhttp/http.c src/libs/zbxhttp/http.c
+index d7c33aa78b..d82b64fb55 100644
+--- src/libs/zbxhttp/http.c
++++ src/libs/zbxhttp/http.c
+@@ -157,6 +157,9 @@ int	zbx_http_prepare_auth(CURL *easyhandle, unsigned char authtype, const char *
+ 				curlauth = CURLAUTH_GSSNEGOTIATE;
+ #endif
+ 				break;
++			case HTTPTEST_AUTH_DIGEST:
++				curlauth = CURLAUTH_DIGEST;
++				break;
+ 			default:
+ 				THIS_SHOULD_NEVER_HAPPEN;
+ 				break;
