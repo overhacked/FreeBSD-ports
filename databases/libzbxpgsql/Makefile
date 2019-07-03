@@ -7,8 +7,8 @@ DISTVERSIONPREFIX=	v
 PORTREVISION=	3
 CATEGORIES=	databases
 
-FLAVORS=        zabbix42 zabbix4 zabbix3 zabbix22
-FLAVOR?=	${FLAVORS:[2]}
+FLAVORS=        zabbix4 zabbix42 zabbix3 zabbix22
+FLAVOR?=	${FLAVORS:[1]}
 PKGNAMEPREFIX=	${FLAVOR}-
 
 MAINTAINER=	martin@waschbuesch.de
