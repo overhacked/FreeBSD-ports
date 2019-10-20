@@ -1,0 +1,3 @@
+Accepts requests on a given URI and forwards the query parameters to Zabbix Server as a JSON string. Intended for use with a log item type and Zabbix 4.0 and later's dependent item JSON pre-processing.
+
+WWW: https://github.com/overhacked/getparams-to-zabbix
