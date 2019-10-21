@@ -6,7 +6,7 @@
 
 . /etc/rc.subr
 
-name="getparams-to-zabbix"
+name="getparams_to_zabbix"
 rcvar="getparams_to_zabbix_enable"
 pidfile="/var/run/getparams-to-zabbix/${name}.pid"
 command="/usr/sbin/daemon"
@@ -20,12 +20,7 @@ load_rc_config $name
 : ${getparams_to_zabbix_listen:="[::]:5556"}
 : ${getparams_to_zabbix_listen_path:="/zabbix"}
 : ${getparams_to_zabbix_log:="/var/log/getparams_to_zabbix/access.log"}
-getparams_to_zabbix_args=\
-	"${getparams_to_zabbix_log:+-L "'$getparams_to_zabbix_log'"}"\
-	" ${getparams_to_zabbix_listen:+-l "'$getparams_to_zabbix_listen'"}"\
-	" ${getparams_to_zabbix_listen_path:+-P "'$getparams_to_zabbix_listen_path'"}"\
-	" -z '$getparams_to_zabbix_server' -p '$getparams_to_zabbix_server_port'"\
-	" -k '$getparams_to_zabbix_key'"
+getparams_to_zabbix_args="${getparams_to_zabbix_log:+-L "\'$getparams_to_zabbix_log\'"} ${getparams_to_zabbix_listen:+-l "\'$getparams_to_zabbix_listen\'"} ${getparams_to_zabbix_listen_path:+-P "\'$getparams_to_zabbix_listen_path\'"} -z '$getparams_to_zabbix_server' -p '$getparams_to_zabbix_server_port' -k '$getparams_to_zabbix_key'"
 getparams_to_zabbix_command="%%PREFIX%%/bin/getparams-to-zabbix $getparams_to_zabbix_args"
 
 command_args="-P ${pidfile} -r -f ${getparams_to_zabbix_command}"
