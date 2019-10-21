@@ -1,0 +1,57 @@
+#!/bin/sh
+#
+# PROVIDE: getparams_to_zabbix
+# REQUIRE: networking
+# KEYWORD:
+
+. /etc/rc.subr
+
+name="getparams-to-zabbix"
+rcvar="getparams_to_zabbix_enable"
+pidfile="/var/run/getparams-to-zabbix/${name}.pid"
+command="/usr/sbin/daemon"
+start_precmd="getparams_to_zabbix_prestart"
+
+load_rc_config $name
+: ${getparams_to_zabbix_enable:=no}
+: ${getparams_to_zabbix_user:=www}
+: ${getparams_to_zabbix_server_port:=10051}
+: ${getparams_to_zabbix_key:=log}
+: ${getparams_to_zabbix_listen:="[::]:5556"}
+: ${getparams_to_zabbix_listen_path:="/zabbix"}
+: ${getparams_to_zabbix_log:="/var/log/getparams_to_zabbix/access.log"}
+getparams_to_zabbix_args=\
+	"${getparams_to_zabbix_log:+-L "'$getparams_to_zabbix_log'"}"\
+	" ${getparams_to_zabbix_listen:+-l "'$getparams_to_zabbix_listen'"}"\
+	" ${getparams_to_zabbix_listen_path:+-P "'$getparams_to_zabbix_listen_path'"}"\
+	" -z '$getparams_to_zabbix_server' -p '$getparams_to_zabbix_server_port'"\
+	" -k '$getparams_to_zabbix_key'"
+getparams_to_zabbix_command="%%PREFIX%%/bin/getparams-to-zabbix $getparams_to_zabbix_args"
+
+command_args="-P ${pidfile} -r -f ${getparams_to_zabbix_command}"
+
+getparams_to_zabbix_prestart() {
+	if [ -z "$getparams_to_zabbix_server" ]; then
+		err 2 "Zabbix Server address must be specified by running 'sysrc getparams_to_zabbix_server=\"zabbix.example.com\"'"
+	fi
+	if [ -n "$getparams_to_zabbix_log" ]; then
+		getparams_to_zabbix_logdir="${getparams_to_zabbix_log%/*}"
+		if [ -d "$getparams_to_zabbix_logdir" ]; then
+			chown -R "$getparams_to_zabbix_user" "$getparams_to_zabbix_logdir"
+		else
+			info "Creating log directory '$getparams_to_zabbix_logdir'"
+			install -d -o "$getparams_to_zabbix_user" "$getparams_to_zabbix_logdir"
+		fi
+	fi
+	if [ -n "$pidfile" ]; then
+		pidfiledir="${pidfile%/*}"
+		if [ -d "$pidfiledir" ]; then
+			chown -R "$getparams_to_zabbix_user" "$pidfiledir"
+		else
+			debug "Creating pidfile directory '$pidfiledir'"
+			install -d -o "$getparams_to_zabbix_user" "$pidfiledir"
+		fi
+	fi
+}
+
+run_rc_command "$1"
