@@ -10,6 +10,7 @@ COMMENT=	Accepts requests on a given URI and forwards the query parameters to Za
 USES=		cargo
 USE_GITHUB=	yes
 GH_ACCOUNT=	overhacked
+USE_RC_SUBR= getparams_to_zabbix
 
 PLIST_FILES=	bin/getparams-to-zabbix
 
