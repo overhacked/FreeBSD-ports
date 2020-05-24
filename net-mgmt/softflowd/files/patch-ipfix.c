@@ -1,5 +1,5 @@
---- softflowd-softflowd-1.0.0_ORIG/ipfix.c      2019-08-16 13:42:16.000000000 +0000
-+++ softflowd-softflowd-1.0.0/ipfix.c   2020-05-24 11:47:58.996607000 +0000
+--- ipfix.c.orig      2019-08-16 13:42:16.000000000 +0000
++++ ipfix.c   2020-05-24 11:47:58.996607000 +0000
 @@ -692,8 +692,8 @@
      }
      if (param->track_level >= TRACK_FULL_VLAN) {
