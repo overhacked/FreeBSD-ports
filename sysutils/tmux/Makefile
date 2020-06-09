@@ -13,7 +13,7 @@ COMMENT=	Terminal Multiplexer
 LICENSE=	ISCL
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		ncurses pkgconfig
+USES=		ncurses:port pkgconfig
 
 USE_GITHUB=	nodefault
 GH_TUPLE=	imomaliev:tmux-bash-completion:ef56d3e:bash
