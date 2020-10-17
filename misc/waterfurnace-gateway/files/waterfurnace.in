@@ -1,0 +1,52 @@
+#!/bin/sh
+#
+# PROVIDE: waterfurnace
+# REQUIRE: networking
+# KEYWORD:
+
+. /etc/rc.subr
+
+name="waterfurnace"
+rcvar="waterfurnace_enable"
+pidfile="/var/run/waterfurnace/${name}.pid"
+command="/usr/sbin/daemon"
+start_precmd="waterfurnace_prestart"
+
+load_rc_config $name
+: ${waterfurnace_enable:=no}
+: ${waterfurnace_user:=www}
+: ${waterfurnace_listen:="[::]:3030"}
+: ${waterfurnace_log:="/var/log/waterfurnace/waterfurnace.log"}
+waterfurnace_args="${waterfurnace_listen:+-l "\'$waterfurnace_listen\'"} ${waterfurnace_gelf:+--gelf "\'$waterfurnace_gelf\'"} ${waterfurnace_username:+-u "\'$waterfurnace_username\'"} ${waterfurnace_password:+-p "\'$waterfurnace_password\'"} "
+waterfurnace_command="%%PREFIX%%/bin/waterfurnace_http_gateway $waterfurnace_args"
+
+command_args="-P ${pidfile} -r -f ${waterfurnace_log:+-o "\'$waterfurnace_log\'"} ${waterfurnace_command}"
+
+waterfurnace_prestart() {
+	if [ -z "$waterfurnace_username" ]; then
+		err 2 "WaterFurnace Symphony username must be specified by running 'sysrc waterfurnace_username=\"user@example.com\"'"
+	fi
+	if [ -z "$waterfurnace_password" ]; then
+		err 2 "WaterFurnace Symphony password must be specified by running 'sysrc waterfurnace_password=\"PASSWORD\"'"
+	fi
+	if [ -n "$waterfurnace_log" ]; then
+		waterfurnace_logdir="${waterfurnace_log%/*}"
+		if [ -d "$waterfurnace_logdir" ]; then
+			chown -R "$waterfurnace_user" "$waterfurnace_logdir"
+		else
+			info "Creating log directory '$waterfurnace_logdir'"
+			install -d -o "$waterfurnace_user" "$waterfurnace_logdir"
+		fi
+	fi
+	if [ -n "$pidfile" ]; then
+		pidfiledir="${pidfile%/*}"
+		if [ -d "$pidfiledir" ]; then
+			chown -R "$waterfurnace_user" "$pidfiledir"
+		else
+			debug "Creating pidfile directory '$pidfiledir'"
+			install -d -o "$waterfurnace_user" "$pidfiledir"
+		fi
+	fi
+}
+
+run_rc_command "$1"
