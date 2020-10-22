@@ -1,13 +1,13 @@
 PORTNAME=	waterfurnace-rs
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.1.0
+DISTVERSION=	0.1.1
 CATEGORIES=	misc
 LICENSE=        BSD3CLAUSE
 
 MAINTAINER=	ross@ross-williams.net
 COMMENT=	Accepts requests on a given URI and forwards the query parameters to Zabbix Server as a JSON string
 
-USES=		cargo
+USES=		cargo ssl
 CARGO_INSTALL_PATH= waterfurnace_http_gateway
 CARGO_FEATURES= gelf
 CARGO_CARGOTOML= ${WRKSRC}/waterfurnace_http_gateway/Cargo.toml
