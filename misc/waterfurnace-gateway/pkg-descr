@@ -1,0 +1,4 @@
+Exposes a read-only REST API for the WaterFurnace Symphony thermostat control
+WebSockets interface
+
+WWW: https://github.com/overhacked/waterfurnace-rs

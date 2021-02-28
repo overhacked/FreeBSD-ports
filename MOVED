@@ -9400,7 +9400,6 @@ devel/gdb66||2017-08-23|Has expired: Broken for more than 6 months
 biology/biojava||2017-08-23|Has expired: Broken for more than 6 months
 java/intellij-pycharm|devel/pycharm-ce|2017-08-23|Renamed to reflect upstream name. Use a more appropriate origin (devel for development tools, IDE)
 www/pyweblib|www/py-pyweblib|2017-08-25|Rename to comply with PyPI scheme
-databases/libzbxpgsql|databases/zabbix3-libzbxpgsql|2017-08-26|Rename to allow multiple versions of libzbxpgsql to coexist
 x11-toolkits/kirigami||2017-08-28|Not needed by anything
 x11-toolkits/kirigami2|x11-toolkits/kf5-kirigami2|2017-08-28|Became an official framework
 www/speedtest-mini||2017-09-03|Has expired: Discontinued upstream (on June 30, 2017)
@@ -10886,6 +10885,7 @@ www/pecl-yaf2|www/pecl-yaf|2018-12-30|Has expired: Works only with EOL php 5.6
 www/redaxo||2018-12-30|Has expired: Works only with EOL php 5.6
 www/dotproject||2018-12-30|Has expired: Works only with EOL php 5.6
 www/sitebar||2018-12-30|Has expired: Works only with EOL php 5.6
+www/limesurvey||2018-12-30|Has expired: Works only with EOL php 5.6
 www/mahara||2018-12-30|Has expired: Works only with EOL php 5.6
 www/mysar||2018-12-30|Has expired: Works only with EOL php 5.6
 www/oscommerce||2018-12-30|Has expired: Works only with EOL php 5.6
@@ -16174,3 +16174,4 @@ devel/allegro-devel|devel/allegro5|2021-02-20|Rename to better match upstream na
 www/py-djangorestframework311||2021-02-26|Removed: Used as a transitional package for www/seahub, please use www/py-djangorestframework instead
 editors/mg-static|editors/mg@static|2021-02-28|Flavored
 devel/snorenotify||2021-02-28|Has expired: Unmaintained upstream
+databases/zabbix3-libzbxpgsql|databases/libzbxpgsql|2019-07-03|Switch from separate ports to flavors

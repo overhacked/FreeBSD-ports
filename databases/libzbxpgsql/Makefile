@@ -6,7 +6,10 @@ PORTVERSION=	1.1.0
 DISTVERSIONPREFIX=	v
 PORTREVISION=	3
 CATEGORIES=	databases
-PKGNAMEPREFIX=	zabbix3-
+
+FLAVORS=        zabbix5 zabbix52 zabbix4 zabbix42 zabbix3 zabbix22
+FLAVOR?=	${FLAVORS:[1]}
+PKGNAMEPREFIX=	${FLAVOR}-
 
 MAINTAINER=	martin@waschbuesch.de
 COMMENT=	Zabbix agent module for comprehensive monitoring of PostgreSQL servers
@@ -18,7 +21,7 @@ BUILD_DEPENDS=	${NONEXISTENT}:net-mgmt/${PKGNAMEPREFIX}agent:patch
 RUN_DEPENDS=	zabbix_agentd:net-mgmt/${PKGNAMEPREFIX}agent
 LIB_DEPENDS=	libconfig.so:devel/libconfig
 
-CONFLICTS=	zabbix[0-9][0-9]-libzbxpgsql
+CONFLICTS=	zabbix[0-9][0-9]?-libzbxpgsql
 
 USES=		autoreconf gmake libtool pgsql
 
@@ -26,7 +29,7 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	cavaliercoder
 
 GNU_CONFIGURE=	yes
-GET_ZBX_WRKSRC=	cd ${.CURDIR:H:H}/net-mgmt/${PKGNAMEPREFIX}agent && make -V WRKSRC
+GET_ZBX_WRKSRC=	cd ${.CURDIR:H:H}/net-mgmt/${PKGNAMEPREFIX}agent && ${SETENV} FLAVOR= make -V WRKSRC
 CONFIGURE_ARGS=	--with-zabbix=$$(${GET_ZBX_WRKSRC})
 
 USE_LDCONFIG=	yes
